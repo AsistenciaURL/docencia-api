@@ -2,9 +2,9 @@
 from rest_framework.views import Response
 from rest_framework import viewsets
 
-from .models import Estudiante, Docente, Curso, Ciclo, Asistencia, Facultad, Curso_has_Estudiante, CategoriaAsistencia
+from .models import Estudiante, Docente, Curso, Ciclo, Asistencia, Facultad, Curso_has_Estudiante, CategoriaAsistencia, Qr, Dispositivo
 
-from .serializers import EstudianteSerializer, DocenteSerializer, CursoSerializer, CicloSerializer, AsistenciaSerializer, FacultadSerializer, Curso_has_EstudianteSerializer, CategoriaAsistenciaSerializer
+from .serializers import EstudianteSerializer, DocenteSerializer, CursoSerializer, CicloSerializer, AsistenciaSerializer, FacultadSerializer, Curso_has_EstudianteSerializer, CategoriaAsistenciaSerializer, QrSerializer, DispositivoSerializer
 
 # serializers
 
@@ -42,4 +42,10 @@ class CategoriaAsistenciaViewSet(viewsets.ModelViewSet):
         queryset = CategoriaAsistencia.objects.all()
         serializer_class = CategoriaAsistenciaSerializer
 
+class QrViewSet(viewsets.ModelViewSet):
+        queryset = Qr.objects.all()
+        serializer_class = QrSerializer
 
+class DispositivoViewSet(viewsets.ModelViewSet):
+        queryset = Dispositivo.objects.all()
+        serializer_class = DispositivoSerializer

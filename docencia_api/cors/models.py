@@ -15,21 +15,21 @@ class Docente(models.Model):
 
 
 class Ciclo(models.Model):
-        idCiclo = models.IntegerField(primary_key = True)
+        idCiclo = models.AutoField(primary_key = True)
         nombre = models.CharField(max_length=50) 
         
         def __str__(self):
                 return f'{self.nombre}'
 
 class Facultad(models.Model):
-        idFacultad = models.IntegerField(primary_key = True)
+        idFacultad = models.AutoField(primary_key = True)
         nombre = models.CharField(max_length=50) 
         
         def __str__(self):
                 return f'{self.nombre}'
 
 class CategoriaAsistencia(models.Model):
-        idFacultad = models.IntegerField(primary_key = True)
+        idFacultad = models.AutoField(primary_key = True)
         Tipo = models.CharField(max_length=50) 
         
         def __str__(self):
@@ -47,10 +47,11 @@ class Estudiante(models.Model):
                 return f'{self.Nombre}'
 
 class Curso(models.Model):
-        idCurso = models.IntegerField(primary_key = True)
+        idCurso = models.AutoField(primary_key = True)
         Nombre = models.CharField(max_length=50) 
         Seccion = models.IntegerField()
         Anio = models.DateField()
+        TotalClases = models.IntegerField()
 
         Ciclo_idciclo = models.ForeignKey(Ciclo, on_delete=models.CASCADE)
         Facultad_idFacultad = models.ForeignKey(Facultad, on_delete=models.CASCADE)
@@ -60,8 +61,24 @@ class Curso(models.Model):
         def __str__(self):
                 return f'{self.Nombre}'
 
-class Curso_has_Estudiante(models.Model):
+class Qr(models.Model):
+        idQr = models.AutoField(primary_key = True)
+        FechaLimite = models.DateField() 
+        
         Curso_idCurso = models.ForeignKey(Curso, on_delete=models.CASCADE)
+        def __str__(self):
+                return f'{self.idQr}'
+
+class Dispositivo(models.Model):
+        idDispositivo = models.AutoField(primary_key = True)
+        Nombre = models.CharField(max_length=45)
+        
+        Qr_idQr = models.ForeignKey(Qr, on_delete=models.CASCADE)
+        def __str__(self):
+                return f'{self.idDispositivo}'
+
+class Curso_has_Estudiante(models.Model):
+        Curso_idCurso = models.AutoField(primary_key = True)
         Estudiante_carnet = models.ForeignKey(Estudiante, on_delete=models.CASCADE)
         
         
@@ -70,7 +87,7 @@ class Curso_has_Estudiante(models.Model):
 
 
 class Asistencia(models.Model):
-        idAsistencia = models.IntegerField(primary_key = True)
+        idAsistencia = models.AutoField(primary_key = True)
         Fecha = models.DateField()
         Observacion = models.CharField(max_length=200) 
 

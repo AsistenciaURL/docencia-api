@@ -77,15 +77,15 @@ WSGI_APPLICATION = 'docencia_api.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'api',
-            'USER': 'root',
-            'PASSWORD': '*',
-            'HOST': '127.0.0.1',
-            'PORT': '3306',
-        }
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd81rl1b825u6v6',
+        'HOST': 'ec2-54-82-205-3.compute-1.amazonaws.com',
+        'PORT': '5432',
+        'USER': 'eizuuzztrkjxqw',
+        'PASSWORD': '824520d40e0d3266990b44226a98a462956d355549382cbc7e8f2b6e4ee1063d',
     }
+}
 
 
 # Password validation
