@@ -4,12 +4,10 @@ from django.db import models
 # Create your models here.
 
 class Docente(models.Model):
-        carnet = models.CharField(primary_key = True, max_length=20)
+        firebaseid = models.CharField(primary_key = True, max_length=50) 
+        carnet = models.CharField(max_length=20)
         nombre = models.CharField(max_length=50) 
         correo = models.CharField(max_length=50) 
-        firebaseid = models.CharField(max_length=50) 
-
-
         def __str__(self):
                 return f'{self.nombre}'
 
@@ -78,7 +76,8 @@ class Dispositivo(models.Model):
                 return f'{self.idDispositivo}'
 
 class Curso_has_Estudiante(models.Model):
-        Curso_idCurso = models.AutoField(primary_key = True)
+        idCurso_has_Estudiante = models.AutoField(primary_key = True)
+        Curso_idCurso = models.ForeignKey(Curso, on_delete=models.CASCADE)
         Estudiante_carnet = models.ForeignKey(Estudiante, on_delete=models.CASCADE)
         
         
