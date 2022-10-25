@@ -1,60 +1,60 @@
 from dataclasses import field
 from rest_framework import serializers
 
-from .models import Estudiante, Docente, Curso, Ciclo, Asistencia, Facultad, Curso_has_Estudiante, CategoriaAsistencia, Qr, Dispositivo
+from .models import student, professor, course, semester, assistance, faculty, course_student, assistance_category, qr, device
 
-class EstudianteSerializer(serializers.ModelSerializer):
+class studentSerializer(serializers.ModelSerializer):
         class Meta:
-                model = Estudiante
+                model = student
                 fields = '__all__'
 
-class DocenteSerializer(serializers.ModelSerializer):
+class professorSerializer(serializers.ModelSerializer):
         class Meta:
-                model = Docente
+                model = professor
                 fields = '__all__'
 
-class CursoSerializer(serializers.ModelSerializer):
+class courseSerializer(serializers.ModelSerializer):
         class Meta:
-                model = Curso
+                model = course
                 fields = '__all__'
 
-class CicloSerializer(serializers.ModelSerializer):
+class semesterSerializer(serializers.ModelSerializer):
         class Meta:
-                model = Ciclo
+                model = semester
                 fields = '__all__'
 
-class EstudianteSerializer(serializers.ModelSerializer):
+class studentSerializer(serializers.ModelSerializer):
         class Meta:
-                model = Estudiante
+                model = student
                 fields = '__all__'
 
-class AsistenciaSerializer(serializers.ModelSerializer):
+class assistanceSerializer(serializers.ModelSerializer):
         class Meta:
-                model = Asistencia
+                model = assistance
                 fields = '__all__'
 
-class FacultadSerializer(serializers.ModelSerializer):
+class facultySerializer(serializers.ModelSerializer):
         class Meta:
-                model = Facultad
+                model = faculty
                 fields = '__all__'
 
-class Curso_has_EstudianteSerializer(serializers.ModelSerializer):
+class course_studentSerializer(serializers.ModelSerializer):
         class Meta:
-                model = Curso_has_Estudiante
+                model = course_student
                 fields = '__all__'
 
-class CategoriaAsistenciaSerializer(serializers.ModelSerializer):
+class assistance_categorySerializer(serializers.ModelSerializer):
         class Meta:
-                model = CategoriaAsistencia
+                model = assistance_category
                 fields = '__all__'
                 
-class QrSerializer(serializers.ModelSerializer):
+class qrSerializer(serializers.ModelSerializer):
         class Meta:
-                model = Qr
+                model = qr
                 fields = '__all__'
 
-class DispositivoSerializer(serializers.ModelSerializer):
+class deviceSerializer(serializers.ModelSerializer):
         class Meta:
-                model = Dispositivo
+                model = device
                 fields = '__all__'
 

@@ -2,50 +2,50 @@
 from rest_framework.views import Response
 from rest_framework import viewsets
 
-from .models import Estudiante, Docente, Curso, Ciclo, Asistencia, Facultad, Curso_has_Estudiante, CategoriaAsistencia, Qr, Dispositivo
+from .models import student, professor, course, semester, assistance, faculty, course_student, assistance_category, qr, device
 
-from .serializers import EstudianteSerializer, DocenteSerializer, CursoSerializer, CicloSerializer, AsistenciaSerializer, FacultadSerializer, Curso_has_EstudianteSerializer, CategoriaAsistenciaSerializer, QrSerializer, DispositivoSerializer
+from .serializers import studentSerializer, professorSerializer, courseSerializer, semesterSerializer, assistanceSerializer, facultySerializer, course_studentSerializer, assistance_categorySerializer, qrSerializer, deviceSerializer
 
 # serializers
 
 
-class EstudianteViewSet(viewsets.ModelViewSet):
-        queryset = Estudiante.objects.all()
-        serializer_class = EstudianteSerializer
+class studentViewSet(viewsets.ModelViewSet):
+        queryset = student.objects.all()
+        serializer_class = studentSerializer
 
-class DocenteViewSet(viewsets.ModelViewSet):
-        queryset = Docente.objects.all()
-        serializer_class = DocenteSerializer
+class professorViewSet(viewsets.ModelViewSet):
+        queryset = professor.objects.all()
+        serializer_class = professorSerializer
 
-class CursoViewSet(viewsets.ModelViewSet):
-        queryset = Curso.objects.all()
-        serializer_class = CursoSerializer
+class courseViewSet(viewsets.ModelViewSet):
+        queryset = course.objects.all()
+        serializer_class = courseSerializer
 
-class CicloViewSet(viewsets.ModelViewSet):
-        queryset = Ciclo.objects.all()
-        serializer_class = CicloSerializer
+class semesterViewSet(viewsets.ModelViewSet):
+        queryset = semester.objects.all()
+        serializer_class = semesterSerializer
 
 
-class AsistenciaViewSet(viewsets.ModelViewSet):
-        queryset = Asistencia.objects.all()
-        serializer_class = AsistenciaSerializer
+class assistanceViewSet(viewsets.ModelViewSet):
+        queryset = assistance.objects.all()
+        serializer_class = assistanceSerializer
 
-class FacultadViewSet(viewsets.ModelViewSet):
-        queryset = Facultad.objects.all()
-        serializer_class = FacultadSerializer
+class facultyViewSet(viewsets.ModelViewSet):
+        queryset = faculty.objects.all()
+        serializer_class = facultySerializer
 
-class Curso_has_EstudianteViewSet(viewsets.ModelViewSet):
-        queryset = Curso_has_Estudiante.objects.all()
-        serializer_class = Curso_has_EstudianteSerializer
+class course_studentViewSet(viewsets.ModelViewSet):
+        queryset = course_student.objects.all()
+        serializer_class = course_studentSerializer
 
-class CategoriaAsistenciaViewSet(viewsets.ModelViewSet):
-        queryset = CategoriaAsistencia.objects.all()
-        serializer_class = CategoriaAsistenciaSerializer
+class assistance_categoryViewSet(viewsets.ModelViewSet):
+        queryset = assistance_category.objects.all()
+        serializer_class = assistance_categorySerializer
 
-class QrViewSet(viewsets.ModelViewSet):
-        queryset = Qr.objects.all()
-        serializer_class = QrSerializer
+class qrViewSet(viewsets.ModelViewSet):
+        queryset = qr.objects.all()
+        serializer_class = qrSerializer
 
-class DispositivoViewSet(viewsets.ModelViewSet):
-        queryset = Dispositivo.objects.all()
-        serializer_class = DispositivoSerializer
+class deviceViewSet(viewsets.ModelViewSet):
+        queryset = device.objects.all()
+        serializer_class = deviceSerializer

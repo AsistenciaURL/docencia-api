@@ -1,102 +1,100 @@
-from unittest.util import _MAX_LENGTH
 from django.db import models
 
-# Create your models here.
-
-class Docente(models.Model):
-        firebaseid = models.CharField(primary_key = True, max_length=50) 
+class professor(models.Model):
+        id = models.CharField(primary_key = True, max_length=50) 
         carnet = models.CharField(max_length=20)
-        nombre = models.CharField(max_length=50) 
-        correo = models.CharField(max_length=50) 
+        name = models.CharField(max_length=50) 
+        email = models.CharField(max_length=50)
+
         def __str__(self):
-                return f'{self.nombre}'
+                return f'{self.name}'
 
 
-class Ciclo(models.Model):
-        idCiclo = models.AutoField(primary_key = True)
-        nombre = models.CharField(max_length=50) 
-        
-        def __str__(self):
-                return f'{self.nombre}'
-
-class Facultad(models.Model):
-        idFacultad = models.AutoField(primary_key = True)
-        nombre = models.CharField(max_length=50) 
+class semester(models.Model):
+        id = models.AutoField(primary_key = True)
+        name = models.CharField(max_length=50) 
         
         def __str__(self):
-                return f'{self.nombre}'
+                return f'{self.name}'
 
-class CategoriaAsistencia(models.Model):
-        idFacultad = models.AutoField(primary_key = True)
-        Tipo = models.CharField(max_length=50) 
+class faculty(models.Model):
+        id = models.AutoField(primary_key = True)
+        name = models.CharField(max_length=50) 
         
         def __str__(self):
-                return f'{self.idFacultad}'
+                return f'{self.name}'
+
+class assistance_category(models.Model):
+        id = models.AutoField(primary_key = True)
+        name = models.CharField(max_length=50) 
+        
+        def __str__(self):
+                return f'{self.id}'
 
 
-class Estudiante(models.Model):
-        Carnet = models.CharField(primary_key = True, max_length=20)
-        Nombre = models.CharField(max_length=50) 
-        Correo = models.CharField(max_length=50)
-        Facultad_idFacultad = models.ForeignKey(Facultad, on_delete=models.CASCADE)
+class student(models.Model):
+        id = models.CharField(primary_key = True, max_length=20)
+        name = models.CharField(max_length=50) 
+        email = models.CharField(max_length=50)
+
+        faculty_id = models.ForeignKey(faculty, on_delete=models.CASCADE)
+        
+        def __str__(self):
+                return f'{self.name}'
+
+class course(models.Model):
+        id = models.AutoField(primary_key = True)
+        name = models.CharField(max_length=50) 
+        section = models.IntegerField()
+        date = models.DateField()
+        class_total = models.IntegerField()
+
+        semester_id = models.ForeignKey(semester, on_delete=models.CASCADE)
+        faculty_id = models.ForeignKey(faculty, on_delete=models.CASCADE)
+        professor_id = models.ForeignKey(professor, on_delete=models.CASCADE)
         
         
         def __str__(self):
-                return f'{self.Nombre}'
+                return f'{self.name}'
 
-class Curso(models.Model):
-        idCurso = models.AutoField(primary_key = True)
-        Nombre = models.CharField(max_length=50) 
-        Seccion = models.IntegerField()
-        Anio = models.DateField()
-        TotalClases = models.IntegerField()
-
-        Ciclo_idciclo = models.ForeignKey(Ciclo, on_delete=models.CASCADE)
-        Facultad_idFacultad = models.ForeignKey(Facultad, on_delete=models.CASCADE)
-        Docente_Carnet = models.ForeignKey(Docente, on_delete=models.CASCADE)
+class qr(models.Model):
+        id = models.AutoField(primary_key = True)
+        limit_date = models.DateField() 
         
-        
+        course_id = models.ForeignKey(course, on_delete=models.CASCADE)
         def __str__(self):
-                return f'{self.Nombre}'
+                return f'{self.id}'
 
-class Qr(models.Model):
-        idQr = models.AutoField(primary_key = True)
-        FechaLimite = models.DateField() 
+class device(models.Model):
+        id = models.AutoField(primary_key = True)
+        name = models.CharField(max_length=45)
         
-        Curso_idCurso = models.ForeignKey(Curso, on_delete=models.CASCADE)
+        qr_id = models.ForeignKey(qr, on_delete=models.CASCADE)
         def __str__(self):
-                return f'{self.idQr}'
+                return f'{self.id}'
 
-class Dispositivo(models.Model):
-        idDispositivo = models.AutoField(primary_key = True)
-        Nombre = models.CharField(max_length=45)
-        
-        Qr_idQr = models.ForeignKey(Qr, on_delete=models.CASCADE)
-        def __str__(self):
-                return f'{self.idDispositivo}'
-
-class Curso_has_Estudiante(models.Model):
-        idCurso_has_Estudiante = models.AutoField(primary_key = True)
-        Curso_idCurso = models.ForeignKey(Curso, on_delete=models.CASCADE)
-        Estudiante_carnet = models.ForeignKey(Estudiante, on_delete=models.CASCADE)
+class course_student(models.Model):
+        id = models.AutoField(primary_key = True)
+        course_id = models.ForeignKey(course, on_delete=models.CASCADE)
+        student_id = models.ForeignKey(student, on_delete=models.CASCADE)
         
         
         def __str__(self):
                 return f'{self.id}'
 
 
-class Asistencia(models.Model):
-        idAsistencia = models.AutoField(primary_key = True)
-        Fecha = models.DateField()
-        Observacion = models.CharField(max_length=200) 
+class assistance(models.Model):
+        id = models.AutoField(primary_key = True)
+        date = models.DateField()
+        observations = models.CharField(max_length=200) 
 
-        Curso_idCurso = models.ForeignKey(Curso, on_delete=models.CASCADE)
-        Estudiante_Carnet = models.ForeignKey(Estudiante, on_delete=models.CASCADE)
-        CategoriasAsistencia_idCategoria = models.ForeignKey(CategoriaAsistencia, on_delete=models.CASCADE)
+        course_id = models.ForeignKey(course, on_delete=models.CASCADE)
+        student_id = models.ForeignKey(student, on_delete=models.CASCADE)
+        assistance_category_id = models.ForeignKey(assistance_category, on_delete=models.CASCADE)
         
         
         def __str__(self):
-                return f'{self.idAsistencia}'
+                return f'{self.id}'
 
 
 
