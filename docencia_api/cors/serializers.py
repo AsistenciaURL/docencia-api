@@ -11,12 +11,14 @@ class qrSerializer(serializers.ModelSerializer):
         class Meta:
                 model = qr
                 fields = '__all__'
+                depth = 2
 
 class courseSerializer(serializers.ModelSerializer):
         qr = qrSerializer(read_only=True, many=True)
         class Meta:
                 model = course
                 fields = '__all__'
+                depth = 1
 
 class professorSerializer(serializers.ModelSerializer):
         class Meta:
