@@ -23,6 +23,13 @@ router.register(r'assistance_category', assistance_categoryViewSet)
 urlpatterns = router.urls
 
 urlpatterns += [
+<<<<<<< HEAD
   path('qr-validate/<int:id>', views.qr_validate),
   path('course-with-students/<str:id>', views.get_course_with_students)
+=======
+        path('get_qr/', qr_list),
+        path('get_course/', course_list),
+        path('get_professor/', professor_list),
+        
+>>>>>>> Get y Post arreglado
 ]

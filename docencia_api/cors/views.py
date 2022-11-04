@@ -4,15 +4,56 @@ import json
 from django.http import HttpResponse, JsonResponse
 from rest_framework.views import Response
 from rest_framework import viewsets
-from django.shortcuts import get_object_or_404
+from django.shortcuts import render, get_object_or_404
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.parsers import JSONParser
+
+
 
 from .models import student, professor, course, semester, assistance, faculty, course_student, assistance_category, qr, device
 
-from .serializers import studentSerializer, professorSerializer, courseSerializer, semesterSerializer, assistanceSerializer, facultySerializer, course_studentSerializer, assistance_categorySerializer, qrSerializer, deviceSerializer
+from .serializers import studentSerializer, professorSerializer, courseSerializer, semesterSerializer, assistanceSerializer, facultySerializer, course_studentSerializer, assistance_categorySerializer, qrSerializer, deviceSerializer, pruebaSerializer, prueba2Serializer,prueba3Serializer
 
 # serializers
 
 
+@csrf_exempt
+def qr_list(request):
+        if request.method == 'GET':
+                qr2 = qr.objects.all()
+                serializer = pruebaSerializer(qr2, many = True)
+                return JsonResponse(serializer.data, safe=False)
+
+
+@csrf_exempt
+def course_list(request):
+        if request.method == 'GET':
+                course2 = course.objects.all()
+                serializer = prueba2Serializer(course2, many = True)
+                return JsonResponse(serializer.data, safe=False)
+        elif request.method == 'POST':
+                data = JSONParser().parse(request)
+                serializer = prueba2Serializer(data=data)
+                if serializer.is_valid():
+                        serializer.save()
+                        return JsonResponse(serializer.data, status=201)
+                return JsonResponse(serializer.error, status=400) 
+
+@csrf_exempt
+def professor_list(request):
+        if request.method == 'GET':
+                professor2 = professor.objects.all()
+                serializer = prueba3Serializer(professor2, many = True)
+                return JsonResponse(serializer.data, safe=False)
+        elif request.method == 'POST':
+                data = JSONParser().parse(request)
+                serializer = prueba3Serializer(data=data)
+                if serializer.is_valid():
+                        serializer.save()
+                        return JsonResponse(serializer.data, status=201)
+                return JsonResponse(serializer.error, status=400) 
+
+        
 class studentViewSet(viewsets.ModelViewSet):
         queryset = student.objects.all()
         serializer_class = studentSerializer
