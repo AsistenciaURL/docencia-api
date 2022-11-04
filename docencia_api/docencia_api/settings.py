@@ -88,11 +88,11 @@ WSGI_APPLICATION = 'docencia_api.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd81rl1b825u6v6',
-        'HOST': 'ec2-54-82-205-3.compute-1.amazonaws.com',
+        'NAME': 'd3b9e3hmm1nvk6',
+        'HOST': 'ec2-52-22-130-151.compute-1.amazonaws.com',
         'PORT': '5432',
-        'USER': 'eizuuzztrkjxqw',
-        'PASSWORD': '824520d40e0d3266990b44226a98a462956d355549382cbc7e8f2b6e4ee1063d',
+        'USER': 'hbtbdwbbmyvgiq',
+        'PASSWORD': '1de32bed3f289160029d6d727848cad550311468e5e83fe8f628de363c689247',
     }
 }
 

@@ -1,7 +1,7 @@
 # django
 from django.db import router
 from django.urls import path
-
+from . import views
 # rest framework
 from rest_framework.routers import DefaultRouter
 
@@ -23,5 +23,6 @@ router.register(r'assistance_category', assistance_categoryViewSet)
 urlpatterns = router.urls
 
 urlpatterns += [
-
+  path('qr-validate/<int:id>', views.qr_validate),
+  path('course-with-students/<str:id>', views.get_course_with_students)
 ]
