@@ -1,8 +1,8 @@
 # django
+from django.contrib import admin
 from django.db import router
 from django.urls import path
 from . import views
-# rest framework
 from rest_framework.routers import DefaultRouter
 
 # views Sets
