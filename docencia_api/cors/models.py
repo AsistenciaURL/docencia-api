@@ -50,8 +50,8 @@ class course(models.Model):
 
         semester_id = models.ForeignKey(semester, on_delete=models.CASCADE)
         faculty_id = models.ForeignKey(faculty, on_delete=models.CASCADE)
-        professor_id = models.ForeignKey(professor, on_delete=models.CASCADE)
-        student_id = models.ManyToManyField(student, related_name='student')
+        professor_id = models.ForeignKey(professor, related_name='course' ,on_delete=models.CASCADE)
+        student_id = models.ManyToManyField(student, related_name='courses')
 
         def __str__(self):
                 return f'{self.name}'

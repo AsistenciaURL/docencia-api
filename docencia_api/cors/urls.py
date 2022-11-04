@@ -24,5 +24,8 @@ router.register(r'assistance_category', assistance_categoryViewSet)
 urlpatterns = router.urls
 
 urlpatterns += [
-
+        path('get_qr/', qr_list),
+        path('get_course/', course_list),
+        path('get_professor/', professor_list),
+        
 ]
