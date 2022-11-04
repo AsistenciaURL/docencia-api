@@ -28,8 +28,7 @@ class student(models.Model):
         id = models.CharField(primary_key = True, max_length=20)
         name = models.CharField(max_length=50) 
         email = models.CharField(max_length=50)
-
-        faculty = models.ForeignKey(faculty, on_delete=models.CASCADE)
+        faculty = models.CharField(max_length=25)
         
         def __str__(self):
                 return f'{self.name}'
@@ -46,11 +45,11 @@ class course(models.Model):
         name = models.CharField(max_length=50) 
         section = models.IntegerField()
         class_total = models.IntegerField(default=0)
+        semester = models.CharField(max_length=25)
+        faculty = models.CharField(max_length=25)
 
-        semester = models.ForeignKey(semester, on_delete=models.CASCADE)
-        faculty = models.ForeignKey(faculty, on_delete=models.CASCADE)
-        professor = models.ForeignKey(professor, on_delete=models.CASCADE)
-        student_id = models.ManyToManyField(student, related_name='student')
+        professor = models.ForeignKey(professor, related_name='course' ,on_delete=models.CASCADE)
+        student_id = models.ManyToManyField(student, related_name='courses')
         
         def __str__(self):
                 return f'{self.name}'
