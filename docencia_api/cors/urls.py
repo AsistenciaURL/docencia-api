@@ -1,6 +1,7 @@
 # django
+from django.contrib import admin
 from django.db import router
-from django.urls import path
+from django.urls import path, include
 from . import views
 # rest framework
 from rest_framework.routers import DefaultRouter
@@ -24,5 +25,8 @@ urlpatterns = router.urls
 
 urlpatterns += [
   path('qr-validate/<int:id>', views.qr_validate),
-  path('course-with-students/<str:id>', views.get_course_with_students)
+  path('course-with-students/<str:id>', views.get_course_with_students),
+  path('get_qr/', qr_list),
+  path('get_course/', course_list),
+  path('get_professor/', professor_list)
 ]
